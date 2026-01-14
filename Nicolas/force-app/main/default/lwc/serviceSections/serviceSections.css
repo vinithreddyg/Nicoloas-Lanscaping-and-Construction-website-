@@ -1,0 +1,41 @@
+.services {
+    padding: 80px 20px;
+    background-color: #f5f7f6;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #2e7d32;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+lightning-icon {
+    --sds-c-icon-color-foreground-default: #f9a825;
+}

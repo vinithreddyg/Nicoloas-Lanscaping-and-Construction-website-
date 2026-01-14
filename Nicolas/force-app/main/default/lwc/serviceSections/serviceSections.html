@@ -1,0 +1,19 @@
+<template>
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+
+        <div class="grid">
+            <template for:each={services} for:item="service">
+                <div key={service.name} class="card">
+                    <lightning-icon 
+                        icon-name="utility:check"
+                        size="small"
+                        alternative-text="check">
+                    </lightning-icon>
+
+                    <span>{service.name}</span>
+                </div>
+            </template>
+        </div>
+    </section>
+</template>

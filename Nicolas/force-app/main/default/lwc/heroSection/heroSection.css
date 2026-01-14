@@ -1,0 +1,194 @@
+/* Three-line attractive menu styling */
+:host ul.slds-list_inline {
+    gap: 1.25rem;
+}
+
+:host ul.slds-list_inline .slds-item a {
+    position: relative;
+    display: inline-block;
+    padding-block: 0.4rem;
+    text-decoration: none;
+    color: #16325c; /* SLDS text */
+    font-weight: 600;
+}
+
+/* create three underline bars using box-shadow on a single pseudo-element */
+:host ul.slds-list_inline .slds-item a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: #d8dde6; /* neutral base */
+    box-shadow:
+        0 4px 0 0 #d8dde6,
+        0 8px 0 0 #d8dde6; /* two more lines -> total three */
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 200ms ease;
+}
+
+:host ul.slds-list_inline .slds-item a:hover,
+:host ul.slds-list_inline .slds-item a:focus {
+    color: #0b5cab; /* SLDS brand */
+    outline: none;
+}
+
+:host ul.slds-list_inline .slds-item a:hover::before,
+:host ul.slds-list_inline .slds-item a:focus::before {
+    background: #0b5cab;
+    box-shadow:
+        0 4px 0 0 #0b5cab,
+        0 8px 0 0 #0b5cab;
+    transform: scaleX(1.02);
+}
+
+@media (max-width: 600px) {
+    :host ul.slds-list_inline {
+        gap: 0.75rem;
+    }
+}
+
+/* Hero styles - full screen */
+.hero {
+    /* Use 100dvh to better handle mobile browser UI; fallback to 100vh */
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    /* Background image provided via inline style from JS getter */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Legibility overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+    z-index: 0;
+}
+
+.overlay {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+    color: #ffffff;
+
+    /* Container width control for long lines */
+    max-width: 900px;
+    padding: 1rem;
+    margin-inline: 1rem;
+}
+
+/* Responsive, accessible typography */
+.overlay h1 {
+    /* clamp(min, preferred, max) */
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    line-height: 1.2;
+    color: #f9a825; /* orange accent */
+    margin: 0 0 0.5rem 0;
+}
+
+.overlay p {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    margin: 0.75rem 0 1.5rem;
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Button base */
+.btn {
+    --btn-bg: #2e7d32; /* SLDS-like success/brand-neutral */
+    --btn-fg: #ffffff;
+    --btn-border: transparent;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px; /* pill */
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1;
+    border: 2px solid var(--btn-border);
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+    box-shadow: 0 0 0 0 rgba(21, 137, 238, 0); /* focus ring placeholder */
+}
+
+/* Primary button */
+.primary {
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    border-color: var(--btn-bg);
+}
+
+/* Secondary (inverted) */
+.secondary {
+    --btn-bg: transparent;
+    --btn-fg: #ffffff;
+    --btn-border: #ffffff;
+    background-color: transparent;
+    color: var(--btn-fg);
+}
+
+/* Hover / active states */
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.primary:hover {
+    background-color: #27692b;
+    border-color: #27692b;
+}
+
+.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+}
+
+/* Keyboard focus visibility */
+.btn:focus,
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(21, 137, 238, 0.6); /* SLDS-like focus ring */
+}
+
+/* Improve contrast of secondary on bright backgrounds */
+@supports (backdrop-filter: blur(2px)) {
+    .secondary {
+        backdrop-filter: blur(2px);
+    }
+}
+
+/* Small screens adjustments */
+@media (max-width: 480px) {
+    .hero {
+        /* keep full height on small screens too */
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding-block: 1.5rem;
+    }
+    .actions {
+        gap: 0.5rem;
+    }
+    .btn {
+        padding: 0.625rem 1rem;
+    }
+}

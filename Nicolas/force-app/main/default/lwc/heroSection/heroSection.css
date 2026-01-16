@@ -106,10 +106,17 @@
 }
 
 .actions {
+    /* Float-like horizontal layout using flex for better control */
     display: flex;
     gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
+
+    /* entrance animation */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: actions-in 420ms ease-out 120ms forwards;
 }
 
 /* Button base */
@@ -153,6 +160,11 @@
     transform: translateY(-1px);
 }
 
+/* subtle press on active */
+.btn:active {
+    transform: translateY(0);
+}
+
 .primary:hover {
     background-color: #27692b;
     border-color: #27692b;
@@ -168,6 +180,23 @@
 .btn:focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px rgba(21, 137, 238, 0.6); /* SLDS-like focus ring */
+}
+
+/* Gentle floating animation if user hovers the actions area */
+.actions:hover .btn {
+    transition: transform 140ms ease, box-shadow 140ms ease, background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+/* Keyframes */
+@keyframes actions-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Improve contrast of secondary on bright backgrounds */
@@ -190,5 +219,29 @@
     }
     .btn {
         padding: 0.625rem 1rem;
+        width: 100%;              /* stack and fill width on small screens */
+        max-width: 320px;         /* keep a pleasant max width */
+    }
+
+    /* Make hero full width on small screens */
+    .full-width-hero {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+}
+
+/* Medium screens: float-like alignment left/right if needed */
+@media (min-width: 481px) and (max-width: 900px) {
+    .actions {
+        justify-content: center;
+    }
+}
+
+/* Large screens: ensure side-by-side "float" layout and spacing */
+@media (min-width: 901px) {
+    .actions .btn {
+        /* mimic float by reserving space and aligning horizontally */
+        white-space: nowrap;
     }
 }

@@ -1,0 +1,53 @@
+.gallery-wrapper {
+  padding: 1rem 0;
+}
+
+/* Horizontal swipe container */
+.gallery {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar (mobile) */
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+/* Image cards */
+.gallery img {
+  flex: 0 0 auto;
+  width: 75%;
+  max-width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  scroll-snap-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop hover polish */
+@media (hover: hover) {
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .gallery img {
+    width: 40%;
+    height: 200px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .gallery img {
+    width: 22%;
+    height: 220px;
+  }
+}

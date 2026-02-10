@@ -1,0 +1,51 @@
+/* Floating mobile call button (visible on mobile) */
+.mobile-button-container {
+    display: none;
+}
+
+/* Show floating action button only on mobile */
+@media (max-width: 768px) {
+    .mobile-button-container {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 1000;
+        display: block;
+    }
+
+    .mobile-floating-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: none;
+        background-color: #2e7d32;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+    .mobile-floating-btn:active {
+        transform: scale(0.98);
+    }
+
+    .icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border: 0;
+    }
+}
